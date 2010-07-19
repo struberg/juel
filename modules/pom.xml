@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.odysseus.juel</groupId>
+	<artifactId>juel</artifactId>
+	<packaging>pom</packaging>
+
+	<name>Java Unified Expression Language</name>
+	<version>2.2.2-SNAPSHOT</version>
+	<description>
+    Implementation of the Java Unified Expression Language as specified
+    by the Expression Language Specification, Version 2.1: part of the
+    JSP 2.1 standard (JSR-245), plus maintenance releases MR1 and MR2.
+	</description>
+
+	<url>http://juel.sourceforge.net/</url>
+	<inceptionYear>2006</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Odysseus Software GmbH</name>
+		<url>http://www.odysseus.de/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Christoph Beck</name>
+			<organization>Odysseus Software GmbH</organization>
+			<organizationUrl>http://www.odysseus.de/</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:svn:https://juel.svn.sourceforge.net/svnroot/juel/trunk</connection>
+		<url>http://juel.svn.sourceforge.net/viewvc/juel/trunk/</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<excludeResources>true</excludeResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<!-- mvn javadoc:jar -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<bottom>Copyright &amp;copy; {inceptionYear}-{currentYear} {organizationName}.</bottom>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+    <modules>
+        <module>api</module>
+        <module>impl</module>
+        <module>spi</module>
+    </modules>
+</project>
