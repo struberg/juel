@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.odysseus.juel</groupId>
+		<artifactId>juel</artifactId>
+		<version>2.2.2-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.odysseus.juel</groupId>
+	<artifactId>juel-all</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Java Unified Expression Language ALL Distribution</name>
+	<version>2.2.2-SNAPSHOT</version>
+
+        <dependencies>
+                <dependency>
+	                <groupId>de.odysseus.juel</groupId>
+	                <artifactId>juel-api</artifactId>
+                	<version>2.2.2-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+	                <groupId>de.odysseus.juel</groupId>
+	                <artifactId>juel-spi</artifactId>
+                	<version>2.2.2-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+	                <groupId>de.odysseus.juel</groupId>
+	                <artifactId>juel-impl</artifactId>
+                	<version>2.2.2-SNAPSHOT</version>
+                </dependency>
+        </dependencies>
+
+	<build>
+		<plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-shade-plugin</artifactId>
+                                <version>1.3.3</version>
+                                <executions>
+                                        <execution>
+                                                <phase>package</phase>
+                                                <goals>
+                                                        <goal>shade</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                                <configuration>
+                                        <createDependencyReducedPom>true</createDependencyReducedPom>
+                                        <createSourcesJar>true</createSourcesJar>
+                                        <artifactSet>
+                                                <includes>
+                                                        <include>de.odysseus.juel:*</include>
+                                                </includes>
+                                        </artifactSet>
+                                </configuration>
+                        </plugin>
+		</plugins>
+	</build>
+</project>
