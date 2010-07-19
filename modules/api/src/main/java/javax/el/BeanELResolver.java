@@ -492,7 +492,9 @@ public class BeanELResolver extends ELResolver {
 			try {
 				return findAccessibleMethod(base.getClass().getMethod(name, types));
 			} catch (NoSuchMethodException e) {
-				return null;
+				if (types.length > 0 && paramCount > 0) {
+					return null;
+				}
 			}
 		}
 		Method varArgsMethod = null;
