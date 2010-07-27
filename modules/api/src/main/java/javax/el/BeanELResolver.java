@@ -498,7 +498,7 @@ public class BeanELResolver extends ELResolver {
 			}
 		}
 		Method varArgsMethod = null;
-		for (Method method : base.getClass().getMethods()) {
+		for (Method method : getMethods(base.getClass())) {
 			if (method.getName().equals(name)) {
 				int formalParamCount = method.getParameterTypes().length;
 				if (method.isVarArgs() && paramCount >= formalParamCount - 1) {
@@ -510,6 +510,25 @@ public class BeanELResolver extends ELResolver {
 		}
 		return varArgsMethod == null ? null : findAccessibleMethod(varArgsMethod);
 	}
+
+	/**
+	 * We cache resolved methods of classes since Class.getMethods() is
+	 * pretty expensive because it's performed in a doPrivileged manner.
+	 * TODO think about using a concurrently used WeakHashMap because the
+	 * Classes might be dynamically generated proxies.
+	 */
+	private Method[] getMethods(Class cls) {
+		Method[] methods = classMethods.get(cls);
+
+		if (methods == null) {
+			methods = cls.getMethods();
+			classMethods.put(cls, methods);
+		}
+
+		return methods;
+	}
+
+	private Map<Class, Method[]> classMethods = new ConcurrentHashMap<Class, Method[]>();
 
 	/**
 	 * Lookup an expression factory used to coerce method parameters in context under key
